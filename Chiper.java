@@ -1,4 +1,5 @@
 
+
 import java.util.*;
 public class Chiper
 {
@@ -21,38 +22,48 @@ public class Chiper
        System.out.println("-----------------------");
        System.out.println("Enter  String to Encrypt  ");
        String str=s1.nextLine();
+       str=str.replaceAll("\\s+","");
+       
        String str1="";
        int len=str.length();
-       if(len%3!=0)
+       double sqrtlen=Math.sqrt(len);
+       
+       int sqrtFloor=(int) Math.floor(sqrtlen);
+       int mainNum=(int)Math.pow(sqrtFloor,2);
+       
+      // System.out.println(mainNum);
+       if(len%sqrtFloor!=0)
        {
            str=str+"*";
            len=str.length();
        
         }
-       if(len%3!=0)
+       if(len%sqrtFloor!=0)
        {
            str=str+"*";
            len=str.length();
         }
-        // System.out.println(str);
-       // System.out.println(len);
+        //System.out.println(str);
+      // System.out.println(len);
        
+        int lenLoop = len-(sqrtFloor-1);
+        int ini=0;
+        while(ini<sqrtFloor)
+        {
         
-       for(int i=0;i<len-2;i=i+3)
+       for(int i=ini;i<lenLoop;i=i+sqrtFloor)
        {
-                str1=str1+str.charAt(i);
-       }
-       for(int i=1;i<len-1;i=i+3)
-       {
-                str1=str1+str.charAt(i);
-       }
-       for(int i=2;i<len;i=i+3)
-       {
-                str1=str1+str.charAt(i);
-       }
+             System.out.println(i);   
+           str1=str1+str.charAt(i);
+          
+     }
+     ini=ini+1;
+     lenLoop=lenLoop+1;
+    }
+    
        System.out.println("Encrypted String");
        System.out.println("----------------");
-       System.out.println(str1);
+       System.out.println(str1); 
        break;
    
    }
@@ -63,46 +74,64 @@ public class Chiper
        System.out.println("Enter  String to Decrypt");
        String str=s2.nextLine();
        String str1="";
+    
+       
        int len=str.length();
-       if(len%5==0)
-       {
-           for(int i=0;i<=len-4;i=i+5)
+       double sqrtlen=Math.sqrt(len);
+       
+       int sqrtFloor=(int) Math.floor(sqrtlen);
+       int mainNum=(int)Math.pow(sqrtFloor,2);
+       
+       System.out.println(mainNum);
+       
+       System.out.println(len);
+       double div=len/4f;
+       System.out.println(div);
+  
+       double diff= Math.round(div);
+       System.out.println(diff);
+       sqrtFloor=(int)diff+1;    // 5
+       //sqrtFloor=sqrtFloor+2;
+          
+       
+       //if(len%sqrtFloor==0)
+       //{
+        int lenLoop = len-(sqrtFloor-1);
+        int ini=0;
+            while(ini<sqrtFloor)
+        {
+           for(int i=ini;i<=lenLoop;i=i+sqrtFloor)
            {
                str1=str1+str.charAt(i);
            }
-            for(int i=1;i<=len-3;i=i+5)
-           {
-               str1=str1+str.charAt(i);
-           }
-            for(int i=2;i<=len-2;i=i+5)
-           {
-               str1=str1+str.charAt(i);
-           }
-            for(int i=3;i<=len-1;i=i+5)
-           {
-               str1=str1+str.charAt(i);
-           }
-            for(int i=4;i<=len;i=i+5)
-           {
-               str1=str1+str.charAt(i);
-           }
+           ini=ini+1;
+           lenLoop=lenLoop+1;
+        }
+         
             System.out.println("Decrypted String");
             System.out.println("----------------");
+            
+          if(str1.contains("*"))
+            {
            int starPos=str1.indexOf("*");
-           String strFin=str1.substring(0,starPos);
-           System.out.println(strFin);
-       }
-       else
-       {
-           System.out.println("Enter Correct Decryption Text");
-       }
+           str1=str1.substring(0,starPos);
+        } 
+           System.out.println(str1);
+     // }
+      // else
+     //  {
+           //System.out.println("Enter Correct Decryption Text");
+      // }
        break;
     }
+    
     default:
     {
         System.out.println("Enter Correct Choice");
     }
-    
 }
+
 } 
+}
+ 
 }
