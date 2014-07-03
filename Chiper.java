@@ -53,7 +53,7 @@ public class Chiper
         
        for(int i=ini;i<lenLoop;i=i+sqrtFloor)
        {
-             System.out.println(i);   
+          //   System.out.println(i);   
            str1=str1+str.charAt(i);
           
      }
